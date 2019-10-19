@@ -1,0 +1,97 @@
+.Login {
+    position: absolute;
+    text-align: center;
+    top: 8%;
+    left: 29%;
+    font-size: 28px;
+}
+.F{
+    color: #1a73e8 
+}
+
+.U{
+    color:#ea4335
+}
+
+.N{
+    color:#fbbc05
+}
+
+.O{
+    color:#34a853;
+}
+
+.SignIn{
+    position: absolute;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    top: 11%;
+    left: 40%;
+  
+    font-size: 30px;
+}
+.Email {
+    position: absolute;
+    top: 20%;
+    left: 10%
+}
+
+.EmailInput {
+    position: absolute;
+    top: 31%;
+    left: 10%;
+    width: 80%;
+    height: 9%;
+    border-radius: 4px;
+    line-height: 24px;
+    outline:none;
+    border : transparent;
+    max-width: 100%;
+    
+}
+.PasswordInput {
+    position: absolute;
+    top: 45%;
+    left: 10%;
+    width: 80%;
+    height: 9%;
+    border-radius: 4px;
+    line-height: 24px;
+    outline:none;
+    border : transparent;
+    max-width: 100%;
+    
+}
+
+.Forgot {
+  
+    color: #1a73e8;
+}
+
+.CreateAccount {
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    color: #1a73e8;
+}
+
+.NextButton {
+    position: absolute;
+    top: 4%;
+    left: 60%;
+    color: #1a73e8;
+}
+
+.Card {
+    margin-top: "2%";
+    position: "absolute";
+    width: "45%";
+    height: "89%"
+}
+
+.HandleClass {
+    position: absolute;
+    top: 10%;
+    left: 35%;
+    height: 100%;
+}
