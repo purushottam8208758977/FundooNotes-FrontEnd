@@ -1,24 +1,11 @@
 import React, { Component } from 'react'
-import Card from '@material-ui/core/Card';
-import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core' // overiding default css properties
-import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-
+import Card from '@material-ui/core/Card';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core' // overiding default css properties
+import GoogleImage from "../assets/google.png"
 import '../Registration.css'
-
-const useStyles = makeStyles(theme => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap'
-    },
-    textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1)
-    },
-    button: {
-        margin: theme.spacing(1),
-    }
-}));
 
 /**
  * @description - This prop is a inbuilt prop we are modifying it
@@ -58,6 +45,50 @@ const theme = createMuiTheme({
     }
 })
 
+const BootstrapButton = withStyles({
+    root: {
+        boxShadow: 'none',
+        textTransform: 'none',
+        fontSize: 14,
+        padding: '7px 24px 7px 24px',
+        border: '1px solid',
+        lineHeight: "20px",
+        backgroundColor: '#287ae6',
+        borderColor: '#287ae6',
+        fontFamily: [
+            "Google Sans", "arial", "sans-serif"
+        ].join(','),
+        '&:hover': {
+            backgroundColor: '#0069d9',
+            borderColor: '#0062cc',
+            boxShadow: 'none',
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#0062cc',
+            borderColor: '#005cbf',
+        },
+        '&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+        },
+    },
+})(Button);
+
+const useStyles = makeStyles(theme => ({
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap'
+    },
+    textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1)
+    },
+    button: {
+        margin: theme.spacing(1),
+    }
+}));
+
+
 export class Registration extends Component {
     constructor() {
         super()
@@ -66,6 +97,12 @@ export class Registration extends Component {
         }
         this.classes = useStyles.bind(this);
     }
+
+    againLogin = () => {
+        let path = '/'
+        this.props.history.push(path)
+    }
+
     render() {
         return (
             <div>
@@ -108,41 +145,63 @@ export class Registration extends Component {
                         </div>
 
                         <div className="LastName">
-                        <TextField
-                            id="outlined-email-input"
-                            label="Last name"
-                            className={this.classes.textField}
-                            type="string"
-                            name="Last name"
-                            autoComplete="email"
-                            margin="normal"
-                            variant="outlined" />
-                         </div> 
+                            <TextField
+                                id="outlined-email-input"
+                                label="Last name"
+                                className={this.classes.textField}
+                                type="string"
+                                name="Last name"
+                                autoComplete="email"
+                                margin="normal"
+                                variant="outlined" />
+                        </div>
 
-                          <div className="UserName">
-                        <TextField
-                            id="outlined-email-input"
-                            label="Username"
-                            className={this.classes.textField}
-                            type="string"
-                            name="Username"
-                            autoComplete="email"
-                            margin="normal"
-                            variant="outlined" />
-                         </div>
+                        <div className="UserName">
+                            <TextField
+                                id="outlined-email-input"
+                                label="Username"
+                                className={this.classes.textField}
+                                type="string"
+                                name="Username"
+                                autoComplete="email"
+                                margin="normal"
+                                variant="outlined" />
+                        </div>
 
                         <div className="Password">
-                         <TextField
-                            id="outlined-email-input"
-                            label="Password"
-                            className={this.classes.textField}
-                            type="string"
-                            name="Password"
-                            autoComplete="email"
-                            margin="normal"
-                            variant="outlined" />
-                         </div>
-                      
+                            <TextField
+                                id="outlined-email-input"
+                                label="Password"
+                                className={this.classes.textField}
+                                type="string"
+                                name="Password"
+                                autoComplete="email"
+                                margin="normal"
+                                variant="outlined" />
+                        </div>
+
+                        <div className="Confirm">
+                            <TextField
+                                id="outlined-email-input"
+                                label="Confirm"
+                                className={this.classes.textField}
+                                type="string"
+                                name="Confirm"
+                                autoComplete="email"
+                                margin="normal"
+                                variant="outlined" />
+                        </div>
+
+                        <div className="Instructions">Use 8 or more characters with a mix of letters, numbers &</div>
+                        <div className="Symbols">symbols</div>
+
+                        <div className="Instead" onClick={this.againLogin} ><b>Sign in instead</b></div>
+
+                        <div className="Register"><BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
+                            <b> Next</b>
+                        </BootstrapButton></div>
+
+                        <div className="GoogleImage"><img src={GoogleImage}></img></div>
                     </Card></MuiThemeProvider></div>
         )
     }

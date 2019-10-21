@@ -83,6 +83,7 @@
 }
 
 .Confirm{
+    position: absolute;
     left:31%;
     top:48.56%;
     height: 10px;
@@ -94,4 +95,44 @@
     border : transparent;
     max-width: 100%;
     font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+}
+
+.Instructions{
+    position: absolute;
+    left:5.3%;
+    top:61%;
+    font-size: 14px;
+    font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+}
+
+.Symbols{
+    position: absolute;
+    left:5.3%;
+    top:64%;
+    font-size: 14px;
+    font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+}
+
+.Instead{
+    position: absolute;
+    top: 76%;
+    left: 5.3%;
+    font-family:  "Google Sans", arial, sans-serif;
+    font-size:14px ;
+    font-weight: 500;
+    line-height:36px ;
+    color: #1a73e8;
+    cursor: pointer;
+}
+
+.Register{
+    position: absolute;
+    top: 76%;
+    left: 34.5%;
+}
+
+.GoogleImage{
+    position: absolute;
+    top: 25.8%;
+    left: 58%;
 }
