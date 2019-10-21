@@ -92,9 +92,6 @@ const useStyles = makeStyles(theme => ({
 export class Registration extends Component {
     constructor() {
         super()
-        this.state = {
-            toggle: false
-        }
         this.classes = useStyles.bind(this);
     }
 

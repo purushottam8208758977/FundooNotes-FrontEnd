@@ -91,6 +91,11 @@ export class Login extends Component {
         let path = '/registration'
         this.props.history.push(path)
     }
+
+    forgetPassword=()=>{
+        let path = '/accountRecovery'
+        this.props.history.push(path)
+    }
     render() {
         return (
             <div>
@@ -136,7 +141,7 @@ export class Login extends Component {
                                 </div>
                                 <br /><br />
 
-                                <div className="Forgot" > Forgot password ? </div>
+                                <div className="Forgot" onClick={this.forgetPassword} > Forgot password ? </div>
                             </div>
                             :
                             <div className="EmailInput">
