@@ -3,9 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { BrowserRouter, Route, Link } from "react-router-dom";
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core' // overiding default css properties
-
+import '../Login.css'
 
 /**
  * @description - This prop is a inbuilt prop we are modifying it
@@ -87,10 +86,13 @@ export class Login extends Component {
     handleToggle = () => {
         this.setState({ toggle: true })
     }
+
+    mapRegistration = () => {
+        let path = '/registration'
+        this.props.history.push(path)
+    }
     render() {
-
         return (
-
             <div>
                 <MuiThemeProvider theme={theme}>
                     <Card style={
@@ -116,7 +118,6 @@ export class Login extends Component {
                             <span className="O">s</span>
                         </b></div>
                         <div className="SignIn"> <br /> Sign in </div>
-
                         {this.state.toggle ?
                             <div className="EmailInput">
                                 <TextField
@@ -130,8 +131,8 @@ export class Login extends Component {
                                     variant="outlined" /> <br />
                                 <div className="HandleSubmit">
                                     <BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin}>
-                                       <b> Submit</b>
-                                </BootstrapButton>
+                                        <b> Submit</b>
+                                    </BootstrapButton>
                                 </div>
                                 <br /><br />
 
@@ -148,10 +149,11 @@ export class Login extends Component {
                                     autoComplete="email"
                                     margin="normal"
                                     variant="outlined" /><br />
-                             <div className="HandleNext">   <BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
-                                   <b> Next</b>
+                                <div className="HandleNext">   <BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
+                                    <b> Next</b>
                                 </BootstrapButton></div>
-                                <div className="CreateAccount"> Create account </div>
+                                <div  className="CreateAccount" onClick={this.mapRegistration}> Create account
+                            </div>
                             </div>
                         }
                     </Card>

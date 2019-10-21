@@ -1,16 +1,24 @@
 //this file is invoked after index.js
-import React from 'react';
-import {Registration} from './components/registration'
-import {Login} from './components/login'
+import React, { Component } from 'react';
+import { Registration } from './components/registration'
+import { Login } from './components/login'
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import './App.css';
-import './Login.css'
 
-function App() { // App is the component 
-  return (
-    <div>
-      <Login></Login>
-    </div>
-  );
+class App extends Component { // App is the component 
+  render() {
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" exact component={Login} ></Route> 
+            <Route path="/registration" component={Registration} ></Route>
+          </Switch>
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
 
+// class App extends Component { // App is ts
 export default App;
