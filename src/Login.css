@@ -3,7 +3,7 @@
     text-align: center;
     top: 8%;
     left: 29%;
-    font-size: 28px;
+    font-size: 28px
 }
 .F{
     color: #1a73e8 
@@ -24,11 +24,13 @@
 .SignIn{
     position: absolute;
     text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 31.9992px;
     top: 11%;
     left: 40%;
-  
-    font-size: 30px;
+    color: #202124;
 }
 .Email {
     position: absolute;
@@ -64,23 +66,31 @@
 }
 
 .Forgot {
-  
+    position: absolute;
+    top: 270%;
+    left: 0%;
     color: #1a73e8;
 }
 
 .CreateAccount {
     position: absolute;
-    top: 80%;
-    left: 10%;
+    top: 270%;
+    left: 0%;
     color: #1a73e8;
+}
+.HandleSubmit{
+    position: absolute;
+    top: 270%;
+    left: 50%;
 }
 
-.NextButton {
+.HandleNext{
     position: absolute;
-    top: 4%;
-    left: 60%;
-    color: #1a73e8;
+    top: 270%;
+    right:19%;
 }
+
+
 
 .Card {
     margin-top: "2%";

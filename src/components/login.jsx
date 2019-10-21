@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core' // overiding default css properties
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core' // overiding default css properties
 
 
-
+/**
+ * @description - This prop is a inbuilt prop we are modifying it
+ */
 const theme = createMuiTheme({
     overrides: {
         'MuiPaper': {
@@ -21,9 +21,44 @@ const theme = createMuiTheme({
             'marginNormal': {
                 width: "100%"
             }
+        },
+        'MuiButton': {
+            'containedPrimary': {
+                top: "90%",
+                left: "80%"
+            }
         }
     }
 })
+
+const BootstrapButton = withStyles({
+    root: {
+        boxShadow: 'none',
+        textTransform: 'none',
+        fontSize: 14,
+        padding: '7px 24px 7px 24px',
+        border: '1px solid',
+        lineHeight: "20px",
+        backgroundColor: '#287ae6',
+        borderColor: '#287ae6',
+        fontFamily: [
+            "Google Sans", "arial", "sans-serif"
+        ].join(','),
+        '&:hover': {
+            backgroundColor: '#0069d9',
+            borderColor: '#0062cc',
+            boxShadow: 'none',
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#0062cc',
+            borderColor: '#005cbf',
+        },
+        '&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+        },
+    },
+})(Button);
 
 
 const useStyles = makeStyles(theme => ({
@@ -47,13 +82,10 @@ export class Login extends Component {
         this.state = {
             toggle: false
         }
-        // this.classes = useStyles.bind(this);
         this.classes = useStyles.bind(this);
     }
     handleToggle = () => {
-        console.log("in ddsf");
-        
-        this.setState({ toggle:true  })
+        this.setState({ toggle: true })
     }
     render() {
 
@@ -85,57 +117,43 @@ export class Login extends Component {
                         </b></div>
                         <div className="SignIn"> <br /> Sign in </div>
 
-                        { this.state.toggle ?
-                        <div className="EmailInput">
-                            {/* <form className={this.classes.container} noValidate autoComplete="off"> */}
-                            <TextField
-                                id="outlined-email-input"
-                                label="Password"
-                                className={this.classes.textField}
-                                type="password"
-                                name="Password"
-                                autoComplete="email"
-                                margin="normal"
-                                variant="outlined" />
-                                 <Button variant="contained" color="primary" className={this.classes.button} onClick={this.handleToggle}>
-                            SUBMIT
-                        </Button>
-                        <div className="Forgot" > Forgot password ? </div>
-                        </div>
-                        :
-                        <div className="EmailInput">
-                            {/* <form className={this.classes.container} noValidate autoComplete="off"> */}
-                            <TextField
-                                id="outlined-email-input"
-                                label="Email"
-                                className={this.classes.textField}
-                                type="email"
-                                name="email"
-                                autoComplete="email"
-                                margin="normal"
-                                variant="outlined" />
-                                 <Button variant="contained" color="primary" className={this.classes.button} onClick={this.handleToggle}>
-                            NEXT
-                        </Button>
-                        </div>
+                        {this.state.toggle ?
+                            <div className="EmailInput">
+                                <TextField
+                                    id="outlined-email-input"
+                                    label="Password"
+                                    className={this.classes.textField}
+                                    type="password"
+                                    name="Password"
+                                    autoComplete="email"
+                                    margin="normal"
+                                    variant="outlined" /> <br />
+                                <div className="HandleSubmit">
+                                    <BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin}>
+                                       <b> Submit</b>
+                                </BootstrapButton>
+                                </div>
+                                <br /><br />
+
+                                <div className="Forgot" > Forgot password ? </div>
+                            </div>
+                            :
+                            <div className="EmailInput">
+                                <TextField
+                                    id="outlined-email-input"
+                                    label="Email"
+                                    className={this.classes.textField}
+                                    type="email"
+                                    name="email"
+                                    autoComplete="email"
+                                    margin="normal"
+                                    variant="outlined" /><br />
+                             <div className="HandleNext">   <BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
+                                   <b> Next</b>
+                                </BootstrapButton></div>
+                                <div className="CreateAccount"> Create account </div>
+                            </div>
                         }
-
-                        {/* <div className="PasswordInput">
-                            <TextField
-                                id="outlined-password-input"
-                                label="Password"
-                                className={this.classes.textField}
-                                type="password"
-                                autoComplete="current-password"
-                                margin="normal"
-                                variant="outlined"
-                            />
-                        </div> */}
-
-
-                      
-                        <div className="CreateAccount"> Create account </div>
-                       
                     </Card>
                 </MuiThemeProvider>
             </div>

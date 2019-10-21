@@ -7,4 +7,3 @@ export class Registration extends Component {
         )
     }
 }
-
