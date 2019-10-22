@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core' // overiding default css properties
 import GoogleImage from "../assets/google.png"
+import { registration } from '../services/services'
 import '../Registration.css'
 
 /**
@@ -92,6 +93,9 @@ const useStyles = makeStyles(theme => ({
 export class Registration extends Component {
     constructor() {
         super()
+        this.state = {//initializing state
+            firstName: ""
+        }
         this.classes = useStyles.bind(this);
     }
 
@@ -100,6 +104,62 @@ export class Registration extends Component {
         this.props.history.push(path)
     }
 
+    handleRegistration = () => {
+
+        console.log("\n\n\t in handle submit");
+        
+        if (this.password !== this.confirmPassword) {console.log("\n\n\t passwords dont match") }
+        else {
+            let registrationObject = {}
+            registrationObject.firstName = this.state.firstName
+            registrationObject.lastName = this.state.lastName
+            registrationObject.userName = this.state.userName
+            registrationObject.password = this.state.password
+
+            console.log("\n\n\tObject ready to be sent --->",registrationObject)
+
+            let registrationResult = await regir
+        }
+
+
+
+    }
+
+    handleFirstName = (event) => {
+        let retrievedFirstName = event.target.value
+        this.setState({//setting firstName
+            firstName: retrievedFirstName
+        })
+        console.log("\n\n\t Firstname ", retrievedFirstName)
+    }
+    handleLastName = (event) => {
+        let retrievedLastName = event.target.value
+        this.setState({//setting lastName
+            lastName: retrievedLastName
+        })
+        console.log("\n\n\t Last name ", retrievedLastName)
+    }
+    handleUserName = (event) => {
+        let retrievedUserName = event.target.value
+        this.setState({//setting user name
+            userName: retrievedUserName
+        })
+        console.log("\n\n\t UserName ", retrievedUserName)
+    }
+    handlePassword = (event) => {
+        let retrievedPassword = event.target.value
+        this.setState({//setting password
+            password: retrievedPassword
+        })
+        console.log("\n\n\t password ", retrievedPassword)
+    }
+    handleConfirmPassword = (event) => {
+        let retrievedConfirmPassword = event.target.value
+        this.setState({//setting confirm password
+            confirmPassword: retrievedConfirmPassword
+        })
+        console.log("\n\n\t password ", retrievedConfirmPassword)
+    }
     render() {
         return (
             <div>
@@ -135,6 +195,8 @@ export class Registration extends Component {
                             label="First name"
                             className={this.classes.textField}
                             type="string"
+                            value={this.state.firstName}  //binding first name ...entry point into front end
+                            onChange={this.handleFirstName}  //invoking respective method to initiate reponse process to backend
                             name="First name"
                             autoComplete="email"
                             margin="normal"
@@ -147,6 +209,8 @@ export class Registration extends Component {
                                 label="Last name"
                                 className={this.classes.textField}
                                 type="string"
+                                value={this.state.lastName}  //binding last name ...entry point into front end
+                                onChange={this.handleLastName}  //invoking respective method to initiate reponse process to backend
                                 name="Last name"
                                 autoComplete="email"
                                 margin="normal"
@@ -159,6 +223,8 @@ export class Registration extends Component {
                                 label="Username"
                                 className={this.classes.textField}
                                 type="string"
+                                value={this.state.UserName}  //binding user name ...entry point into front end
+                                onChange={this.handleUserName}  //invoking respective method to initiate reponse process to backend
                                 name="Username"
                                 autoComplete="email"
                                 margin="normal"
@@ -170,7 +236,9 @@ export class Registration extends Component {
                                 id="outlined-email-input"
                                 label="Password"
                                 className={this.classes.textField}
-                                type="string"
+                                type="password"
+                                value={this.state.password}  //binding password ...entry point into front end
+                                onChange={this.handlePassword}  //invoking respective method to initiate reponse process to backend
                                 name="Password"
                                 autoComplete="email"
                                 margin="normal"
@@ -182,7 +250,9 @@ export class Registration extends Component {
                                 id="outlined-email-input"
                                 label="Confirm"
                                 className={this.classes.textField}
-                                type="string"
+                                type="password"
+                                value={this.state.confirmPassword}  //binding first name ...entry point into front end
+                                onChange={this.handleConfirmPassword}  //invoking respective method to initiate reponse process to backend
                                 name="Confirm"
                                 autoComplete="email"
                                 margin="normal"
@@ -194,11 +264,11 @@ export class Registration extends Component {
 
                         <div className="Instead" onClick={this.againLogin} ><b>Sign in instead</b></div>
 
-                        <div className="Register"><BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
-                            <b> Next</b>
+                        <div className="Register" onClick={this.handleRegistration}><BootstrapButton  variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
+                            <b> Submit</b>
                         </BootstrapButton></div>
 
-                        <div className="GoogleImage"><img src={GoogleImage}></img></div>
+                        <div className="GoogleImage"><img src={GoogleImage} alt="google pic"></img></div>
                     </Card></MuiThemeProvider></div>
         )
     }

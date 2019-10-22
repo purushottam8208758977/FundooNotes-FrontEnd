@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core' // overiding default css properties
-import '../ForgetPassword.css'
+import '../ResetPassword.css'
 
 /**
  * @description - This prop is a inbuilt prop we are modifying it
@@ -74,7 +74,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export class ForgetPassword extends Component {
+export class ResetPassword extends Component {
     constructor() {
         super()
         this.classes = useStyles.bind(this);
@@ -93,7 +93,7 @@ export class ForgetPassword extends Component {
                             height: "60%"
                         }
                     }>
-                        <div className="TitleF"> <b>
+                        <div className="TitleR"> <b>
                             <span className="F">F</span>
                             <span className="U">u</span>
                             <span className="N">n</span>
@@ -107,28 +107,30 @@ export class ForgetPassword extends Component {
                             <span className="F">e</span>
                             <span className="O">s</span>
                         </b></div>
-                         <div className="Find">Lets find your account </div>
+                        <div className="InstructionsR">Enter a new password</div>
 
-                        <div className="EnterEmail">Enter your email</div> 
+                        <div className="InstructionsRE"><b>Use 8 or more characters with a mix of letters, numbers & symbols.</b></div>
 
-                        <div className="Enter">
+
+                        <div className="EnterR">
                             <TextField
                                 id="outlined-email-input"
-                                label="Email"
+                                label="Password"
                                 className={this.classes.textField}
-                                type="string"
+                                type="password"
                                 name="Last name"
                                 autoComplete="email"
                                 margin="normal"
                                 variant="outlined" />
                         </div>
 
-                        <div className="FindButton"><BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
-                            <b> Next</b>
+                        <div className="FindButtonR"><BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
+                            <b> Submit</b>
                         </BootstrapButton></div>
                     </Card>
                 </MuiThemeProvider>
             </div>
+
 
         )
     }
