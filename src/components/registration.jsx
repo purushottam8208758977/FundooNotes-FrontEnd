@@ -91,10 +91,15 @@ const useStyles = makeStyles(theme => ({
 
 
 export class Registration extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {//initializing state
-            firstName: ""
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            confirmPassword: ""
+
         }
         this.classes = useStyles.bind(this);
     }
@@ -104,25 +109,27 @@ export class Registration extends Component {
         this.props.history.push(path)
     }
 
-    handleRegistration = () => {
+     handleRegistration = ()  => {
 
-        console.log("\n\n\t in handle submit");
-        
-        if (this.password !== this.confirmPassword) {console.log("\n\n\t passwords dont match") }
+        console.log("\n\n\t in handle submit", this.state.password);
+
+        if (this.state.password !== this.state.confirmPassword) { console.log("\n\n\t passwords dont match") }
         else {
             let registrationObject = {}
             registrationObject.firstName = this.state.firstName
             registrationObject.lastName = this.state.lastName
-            registrationObject.userName = this.state.userName
+            registrationObject.email = this.state.email
             registrationObject.password = this.state.password
 
-            console.log("\n\n\tObject ready to be sent --->",registrationObject)
+            console.log("\n\n\tObject ready to be sent --->", registrationObject)
 
-            let registrationResult = await regir
+             registration(registrationObject).then((data)=>{
+                
+                if (data) { console.log("\n\n\t Response ", data) }
+
+             })
+
         }
-
-
-
     }
 
     handleFirstName = (event) => {
@@ -130,7 +137,7 @@ export class Registration extends Component {
         this.setState({//setting firstName
             firstName: retrievedFirstName
         })
-        console.log("\n\n\t Firstname ", retrievedFirstName)
+        console.log("\n\n\t first name ", retrievedFirstName)
     }
     handleLastName = (event) => {
         let retrievedLastName = event.target.value
@@ -139,12 +146,12 @@ export class Registration extends Component {
         })
         console.log("\n\n\t Last name ", retrievedLastName)
     }
-    handleUserName = (event) => {
-        let retrievedUserName = event.target.value
+    handleemail = (event) => {
+        let retrievedemail = event.target.value
         this.setState({//setting user name
-            userName: retrievedUserName
+            email: retrievedemail
         })
-        console.log("\n\n\t UserName ", retrievedUserName)
+        console.log("\n\n\t email ", retrievedemail)
     }
     handlePassword = (event) => {
         let retrievedPassword = event.target.value
@@ -158,7 +165,7 @@ export class Registration extends Component {
         this.setState({//setting confirm password
             confirmPassword: retrievedConfirmPassword
         })
-        console.log("\n\n\t password ", retrievedConfirmPassword)
+        console.log("\n\n\t confirm pasword ", retrievedConfirmPassword)
     }
     render() {
         return (
@@ -220,12 +227,12 @@ export class Registration extends Component {
                         <div className="UserName">
                             <TextField
                                 id="outlined-email-input"
-                                label="Username"
+                                label="email"
                                 className={this.classes.textField}
                                 type="string"
-                                value={this.state.UserName}  //binding user name ...entry point into front end
-                                onChange={this.handleUserName}  //invoking respective method to initiate reponse process to backend
-                                name="Username"
+                                value={this.state.email}  //binding user name ...entry point into front end
+                                onChange={this.handleemail}  //invoking respective method to initiate reponse process to backend
+                                name="email"
                                 autoComplete="email"
                                 margin="normal"
                                 variant="outlined" />
@@ -264,7 +271,7 @@ export class Registration extends Component {
 
                         <div className="Instead" onClick={this.againLogin} ><b>Sign in instead</b></div>
 
-                        <div className="Register" onClick={this.handleRegistration}><BootstrapButton  variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
+                        <div className="Register" onClick={this.handleRegistration}><BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
                             <b> Submit</b>
                         </BootstrapButton></div>
 

@@ -1,8 +1,10 @@
 import axios from 'axios'
 const url = "http://localhost:4000"
 
-export function registration(registrationData){
-    let userData = axios.post(url+"/registration",registrationData)
+export function registration(registrationData) {
 
-    return userData
+    console.log("\n\n\tIn services --->", registrationData)
+    return axios.post(url + "/registration", registrationData)
+
+    //return userData
 }
