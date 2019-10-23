@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core' // overiding default css properties
+import { login } from '../services/services'
 
 import '../Login.css'
 
@@ -80,10 +81,46 @@ export class Login extends Component {
     constructor() {
         super()
         this.state = {
-            toggle: false
+            toggle: false,
+            email: "",
+            password: ""
         }
         this.classes = useStyles.bind(this);
     }
+
+    handleLogin = () => {
+
+        console.log(`\n\n\t In handle login email - ${this.state.email}  password - ${this.state.password}`);
+
+       
+            let loginObject = {}
+            loginObject.email = this.state.email
+            loginObject.password = this.state.password
+
+            console.log("\n\n\tObject ready to be sent --->", loginObject)
+
+            login(loginObject).then((data) => {
+                if (data) { console.log("\n\n\t Response ", data) }
+            })
+
+        
+    }
+    collectEmail = (event) => {
+        let retrievedEmail = event.target.value
+        this.setState({//setting email
+            email: retrievedEmail
+        })
+        console.log("\n\n\t Email ", retrievedEmail)
+    }
+
+    collectPassword = (event) => {
+        let retrievedPassword = event.target.value
+        this.setState({//setting password
+            password: retrievedPassword
+        })
+        console.log("\n\n\t Password ", retrievedPassword)
+    }
+
     handleToggle = () => {
         this.setState({ toggle: true })
     }
@@ -93,7 +130,7 @@ export class Login extends Component {
         this.props.history.push(path)
     }
 
-    forgetPassword=()=>{
+    forgetPassword = () => {
         let path = '/accountRecovery'
         this.props.history.push(path)
     }
@@ -131,11 +168,13 @@ export class Login extends Component {
                                     label="Password"
                                     className={this.classes.textField}
                                     type="password"
+                                    value={this.state.password}  //binding password ...entry point into front end
+                                    onChange={this.collectPassword}  //invoking respective method to initiate reponse process to backend
                                     name="Password"
                                     autoComplete="email"
                                     margin="normal"
                                     variant="outlined" /> <br />
-                                <div className="HandleSubmit">
+                                <div className="HandleSubmit" onClick={this.handleLogin}>
                                     <BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin}>
                                         <b> Submit</b>
                                     </BootstrapButton>
@@ -151,6 +190,8 @@ export class Login extends Component {
                                     label="Email"
                                     className={this.classes.textField}
                                     type="email"
+                                    value={this.state.email}  //binding email ...entry point into front end
+                                    onChange={this.collectEmail}  //invoking respective method to initiate reponse process to backend
                                     name="email"
                                     autoComplete="email"
                                     margin="normal"
@@ -158,7 +199,7 @@ export class Login extends Component {
                                 <div className="HandleNext">   <BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
                                     <b> Next</b>
                                 </BootstrapButton></div>
-                                <div  className="CreateAccount" onClick={this.mapRegistration}> Create account
+                                <div className="CreateAccount" onClick={this.mapRegistration}> Create account
                             </div>
                             </div>
                         }

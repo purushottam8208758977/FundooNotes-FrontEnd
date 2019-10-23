@@ -227,7 +227,7 @@ export class Registration extends Component {
                         <div className="UserName">
                             <TextField
                                 id="outlined-email-input"
-                                label="email"
+                                label="Email"
                                 className={this.classes.textField}
                                 type="string"
                                 value={this.state.email}  //binding user name ...entry point into front end
