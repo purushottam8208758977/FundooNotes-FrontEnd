@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core' // overiding default css properties
 import '../ForgetPassword.css'
-
+import {forgetPassword} from '../services/services'
 /**
  * @description - This prop is a inbuilt prop we are modifying it
  */
@@ -77,7 +77,36 @@ const useStyles = makeStyles(theme => ({
 export class ForgetPassword extends Component {
     constructor() {
         super()
+        this.state={
+            email:""
+        }
         this.classes = useStyles.bind(this);
+    }
+    collectEmail = (event) => {
+        let retrievedEmail = event.target.value
+        this.setState({//setting email
+            email: retrievedEmail
+        })
+        console.log("\n\n\t Email ", retrievedEmail)
+    }
+
+    handleForgetPassword = () => {
+
+        console.log(`\n\n\t In handle forget password email - ${this.state.email} `);
+
+       
+            let forgetObject = {}
+            forgetObject.email = this.state.email
+            
+
+            console.log("\n\n\tObject ready to be sent --->", forgetObject)
+            
+
+            forgetPassword(forgetObject).then((data) => {
+                if (data) { console.log("\n\n\t Response ", data) }
+            })
+
+        
     }
     render() {
         return (
@@ -107,9 +136,9 @@ export class ForgetPassword extends Component {
                             <span className="F">e</span>
                             <span className="O">s</span>
                         </b></div>
-                         <div className="Find">Lets find your account </div>
+                        <div className="Find">Lets find your account </div>
 
-                        <div className="EnterEmail">Enter your email</div> 
+                        <div className="EnterEmail">Enter your email</div>
 
                         <div className="Enter">
                             <TextField
@@ -117,14 +146,16 @@ export class ForgetPassword extends Component {
                                 label="Email"
                                 className={this.classes.textField}
                                 type="string"
+                                value={this.state.email}  //binding email ...entry point into front end
+                                onChange={this.collectEmail}  //invoking respective method to initiate reponse process to backend
                                 name="Last name"
                                 autoComplete="email"
                                 margin="normal"
                                 variant="outlined" />
                         </div>
 
-                        <div className="FindButton"><BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
-                            <b> Next</b>
+                        <div className="FindButton" onClick={this.handleForgetPassword}><BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
+                            <b> Submit</b>
                         </BootstrapButton></div>
                     </Card>
                 </MuiThemeProvider>

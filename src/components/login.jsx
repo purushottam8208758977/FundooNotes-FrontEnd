@@ -87,7 +87,10 @@ export class Login extends Component {
         }
         this.classes = useStyles.bind(this);
     }
-
+    toDashboard = () => {
+        let path = '/home'
+        this.props.history.push(path)
+    }
     handleLogin = () => {
 
         console.log(`\n\n\t In handle login email - ${this.state.email}  password - ${this.state.password}`);
@@ -99,8 +102,12 @@ export class Login extends Component {
 
             console.log("\n\n\tObject ready to be sent --->", loginObject)
 
-            login(loginObject).then((data) => {
-                if (data) { console.log("\n\n\t Response ", data) }
+            login(loginObject).then((responseReceived) => {
+                if (responseReceived) { console.log("\n\n\t Response ", responseReceived) }
+
+                if(responseReceived.data.success){
+                    this.toDashboard()
+                }
             })
 
         

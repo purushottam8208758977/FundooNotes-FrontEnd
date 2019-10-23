@@ -34,7 +34,7 @@ const theme = createMuiTheme({
                 padding: "8.5px 11px"
             }
         },
-        'MuiInputLabel': {
+        'MuiInputLabel': {   
             'outlined': { transform: "translate(14px, 11px) scale(1)" }
         }
         ,

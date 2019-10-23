@@ -18,7 +18,7 @@ class App extends Component { // App is the component
             <Route path="/" exact component={Login} ></Route> 
             <Route path="/registration" component={Registration} ></Route>
             <Route path="/accountRecovery" component={ForgetPassword} ></Route>
-            <Route path="/resetPassword" component={ResetPassword} ></Route>
+            <Route path="/resetPassword/:token" component={ResetPassword} ></Route>
             <Route path="/home" component={Dashboard}></Route>"
             <Route path="/emailVerification/:token" component={EmailVerification}></Route>"
 

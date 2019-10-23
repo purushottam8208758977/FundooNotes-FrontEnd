@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core' // overiding default css properties
 import '../ResetPassword.css'
-
+import { resetPassword } from '../services/services'
 /**
  * @description - This prop is a inbuilt prop we are modifying it
  */
@@ -77,7 +77,31 @@ const useStyles = makeStyles(theme => ({
 export class ResetPassword extends Component {
     constructor() {
         super()
+        this.state = {
+            password: ""
+        }
         this.classes = useStyles.bind(this);
+    }
+    collectPassword = (event) => {
+        let retrievedPassword = event.target.value
+        this.setState({//setting email
+            password: retrievedPassword
+        })
+        console.log("\n\n\t new password ", retrievedPassword)
+    }
+    resettingPassword = () => {
+        console.log(`\n\n\t In reset password - ${this.state.password} `);
+
+        let resetObject = {}
+        resetObject.password = this.state.password
+
+        console.log("\n\n\tObject ready to be sent --->", resetObject)
+        let token = this.props.match.params.token
+        console.log("\n\n\tToken extracted from url --->",token)
+
+        resetPassword(resetObject,token).then((data) => {
+            if (data) { console.log("\n\n\t Response ", data) }
+        })
     }
     render() {
         return (
@@ -118,13 +142,15 @@ export class ResetPassword extends Component {
                                 label="Password"
                                 className={this.classes.textField}
                                 type="password"
+                                value={this.state.password}  //binding password ...entry point into front end
+                                onChange={this.collectPassword}  //invoking respective method to initiate reponse process to backend
                                 name="Last name"
                                 autoComplete="email"
                                 margin="normal"
                                 variant="outlined" />
                         </div>
 
-                        <div className="FindButtonR"><BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
+                        <div className="FindButtonR" onClick={this.resettingPassword}><BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
                             <b> Submit</b>
                         </BootstrapButton></div>
                     </Card>

@@ -13,10 +13,24 @@ export function login(loginData) {
 }
 
 export function emailVerification(verificationToken) { // blank object is for data ... it understands second argument as headers
-    console.log("\n\n\tIn services for email verification ",verificationToken)
-    return axios.post(url + "/emailVerification",{}, {
+    console.log("\n\n\tIn services for email verification ", verificationToken)
+    return axios.post(url + "/emailVerification", {}, {
         headers: {
             token: verificationToken
+        }
+    })
+}
+
+export function forgetPassword(forgetData) {
+    console.log("\n\n\tIN services for forget password API", forgetData)
+    return axios.post(url + "/forgetPassword", forgetData)
+}
+
+export function resetPassword(resetData, token) {
+    console.log("\n\n\tIN services for reset password API", resetData,token)
+    return axios.post(url + "/resetPassword", resetData, {
+        headers: {
+            token: token
         }
     })
 }

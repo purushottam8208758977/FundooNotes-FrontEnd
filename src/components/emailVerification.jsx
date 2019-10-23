@@ -84,28 +84,21 @@ export class EmailVerification extends Component {
         }
         this.classes = useStyles.bind(this);
     }
-    collectToken = () => {
     
-       
-        // this.setState({//setting firstName
-        //     firstName: retrievedFirstName
-        // })
-        // console.log("\n\n\t first name ", retrievedFirstName)
-    }
+    /**
+     * @description - Captures the token from params and then passes it on to the back end 
+     *                After receiving the response from the backend it will show the login button 
+     *                to login .
+     */
     handleToggle = () => {
         console.log("token --->",this.props.match.params.token)
         this.setState({//setting firstName
                 token: this.props.match.params.token
             })
-        
             emailVerification(this.props.match.params.token).then((verificationResult)=>{
-
-                if(verificationResult){console.log("\n\n\t Verificaiton response -->",verificationResult)}
-                
-               // this.setState({ toggle: true })
+                if(verificationResult){console.log("\n\n\t Verification response -->",verificationResult)}
+                this.setState({ toggle: true })
             })
-
-        
     }
 
     toLogin = () => {
@@ -144,7 +137,7 @@ export class EmailVerification extends Component {
 
                         {this.state.toggle ?
                             <div> <div className="InstructionsREV" ><b>Your account is now active !</b></div>
-                                <div className="FindButtonR" ><BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
+                                <div className="FindButtonR" onClick={this.toLogin} ><BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
                                     <b> Login !</b>
                                 </BootstrapButton></div>
                             </div>
