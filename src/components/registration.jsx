@@ -7,7 +7,8 @@ import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core'
 import GoogleImage from "../assets/google.png"
 import { registration } from '../services/services'
 import '../Registration.css'
-
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 /**
  * @description - This prop is a inbuilt prop we are modifying it
  */
@@ -87,7 +88,9 @@ const useStyles = makeStyles(theme => ({
     button: {
         margin: theme.spacing(1),
     }
+    
 }));
+
 
 
 export class Registration extends Component {
@@ -99,7 +102,6 @@ export class Registration extends Component {
             email: "",
             password: "",
             confirmPassword: ""
-
         }
         this.classes = useStyles.bind(this);
     }
@@ -123,10 +125,10 @@ export class Registration extends Component {
 
             console.log("\n\n\tObject ready to be sent --->", registrationObject)
 
-             registration(registrationObject).then((data)=>{
+             registration(registrationObject).then((responseReceived)=>{
                 
-                if (data) { console.log("\n\n\t Response ", data) }
-
+                if (responseReceived) { console.log("\n\n\t Response ", responseReceived) }
+                toaster.notify(responseReceived.data.message)
              })
 
         }
@@ -146,7 +148,7 @@ export class Registration extends Component {
         })
         console.log("\n\n\t Last name ", retrievedLastName)
     }
-    handleemail = (event) => {
+    handleEmail = (event) => {
         let retrievedemail = event.target.value
         this.setState({//setting user name
             email: retrievedemail
@@ -231,7 +233,7 @@ export class Registration extends Component {
                                 className={this.classes.textField}
                                 type="string"
                                 value={this.state.email}  //binding user name ...entry point into front end
-                                onChange={this.handleemail}  //invoking respective method to initiate reponse process to backend
+                                onChange={this.handleEmail}  //invoking respective method to initiate reponse process to backend
                                 name="email"
                                 autoComplete="email"
                                 margin="normal"

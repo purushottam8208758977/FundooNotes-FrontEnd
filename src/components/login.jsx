@@ -5,9 +5,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core' // overiding default css properties
 import { login } from '../services/services'
-
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 import '../Login.css'
-
 /**
  * @description - This prop is a inbuilt prop we are modifying it
  */
@@ -77,6 +77,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
+
 export class Login extends Component {
     constructor() {
         super()
@@ -87,30 +88,28 @@ export class Login extends Component {
         }
         this.classes = useStyles.bind(this);
     }
+   
     toDashboard = () => {
         let path = '/home'
         this.props.history.push(path)
     }
-    handleLogin = () => {
-
+   handleLogin = () => {
         console.log(`\n\n\t In handle login email - ${this.state.email}  password - ${this.state.password}`);
 
-       
-            let loginObject = {}
-            loginObject.email = this.state.email
-            loginObject.password = this.state.password
+        let loginObject = {}
+        loginObject.email = this.state.email
+        loginObject.password = this.state.password
 
-            console.log("\n\n\tObject ready to be sent --->", loginObject)
+        console.log("\n\n\tObject ready to be sent --->", loginObject)
 
-            login(loginObject).then((responseReceived) => {
-                if (responseReceived) { console.log("\n\n\t Response ", responseReceived) }
+        login(loginObject).then((responseReceived) => {
+            if (responseReceived) { console.log("\n\n\t Response ", responseReceived) }
 
-                if(responseReceived.data.success){
-                    this.toDashboard()
-                }
-            })
-
-        
+            if (responseReceived.data.success) {
+                toaster.notify(responseReceived.data.message)
+                this.toDashboard()
+            }
+        })
     }
     collectEmail = (event) => {
         let retrievedEmail = event.target.value

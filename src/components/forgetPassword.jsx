@@ -6,6 +6,8 @@ import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core' // overiding default css properties
 import '../ForgetPassword.css'
 import {forgetPassword} from '../services/services'
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 /**
  * @description - This prop is a inbuilt prop we are modifying it
  */
