@@ -12,6 +12,9 @@ import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
 import DnsOutlinedIcon from '@material-ui/icons/DnsOutlined';
 import KeepIcon from '../assets/keep.jpg'
 import '../Dashboard.css'
+import Avatar from '@material-ui/core/Avatar';
+import { deepOrange, deepPurple } from '@material-ui/core/colors';
+import Grid from '@material-ui/core/Grid';
 
 /**
  * @description - This prop is a inbuilt prop we are modifying it
@@ -65,6 +68,14 @@ const theme = createMuiTheme({
                 "position": "absolute",
                 "left": "2%"
             }
+        },
+        "MuiAvatar": {
+            "root": {
+                position:"absolute",
+                left:"40%",
+                display:"flex",
+                justifyContent:"flex-end"
+            }
         }
 
     }
@@ -86,7 +97,20 @@ const useStyles = makeStyles(theme => ({
     },
     button: {
         margin: theme.spacing(1),
-    }
+    },
+    avatar: {
+        margin: 10,
+    },
+    orangeAvatar: {
+        margin: 10,
+        color: '#fff',
+        backgroundColor: deepOrange[500],
+    },
+    purpleAvatar: {
+        margin: 10,
+        color: '#fff',
+        backgroundColor: deepPurple[500],
+    },
 }));
 
 export class Dashboard extends Component {
@@ -100,7 +124,7 @@ export class Dashboard extends Component {
     handleView = () => {
         this.setState({ toggle: true })
     }
-    spoilView=()=>{
+    spoilView = () => {
         this.setState({ toggle: false })
     }
     render() {
@@ -138,6 +162,9 @@ export class Dashboard extends Component {
                         />
                         <img className="KeepIcon" src={KeepIcon} alt="keep pic"></img>
                         <div className="Keep">Fundoo</div>
+                        <div className="alignMent">  <Grid container justify="flex-end" alignItems="flex-end">
+                            <Avatar className={this.classes.orangeAvatar}>N</Avatar>
+                        </Grid></div>
                     </Card>
                 </MuiThemeProvider></div>
         )
