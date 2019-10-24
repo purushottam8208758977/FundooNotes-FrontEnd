@@ -10,7 +10,7 @@ import SearchIcon from "@material-ui/icons/Search";
 //<MDBIcon icon="th-large" />
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
 import DnsOutlinedIcon from '@material-ui/icons/DnsOutlined';
-
+import KeepIcon from '../assets/keep.jpg'
 import '../Dashboard.css'
 
 /**
@@ -65,12 +65,6 @@ const theme = createMuiTheme({
                 "position": "absolute",
                 "left": "2%"
             }
-        },
-        "MuiIconButton": {
-            "root": {
-                "padding": "18px"
-            }
-
         }
 
     }
@@ -142,6 +136,8 @@ export class Dashboard extends Component {
                                 )
                             }}
                         />
+                        <img className="KeepIcon" src={KeepIcon} alt="keep pic"></img>
+                        <div className="Keep">Fundoo</div>
                     </Card>
                 </MuiThemeProvider></div>
         )

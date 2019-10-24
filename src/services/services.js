@@ -7,7 +7,7 @@ export function registration(registrationData) {
     return axios.post(url + "/registration", registrationData)
 }
 
-export function login(loginData) {
+export function login(loginData) { // login component
     console.log("\n\n\tIn service for login--->", loginData)
     return axios.post(url + "/login", loginData)
 }
