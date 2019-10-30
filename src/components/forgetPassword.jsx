@@ -118,7 +118,7 @@ export class ForgetPassword extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="Main">
                 <MuiThemeProvider theme={theme}>
 
                     <Card style={
@@ -128,6 +128,10 @@ export class ForgetPassword extends Component {
                             position: "absolute",
                             width: "35%",
                             height: "60%"
+                            // display: "flex",
+                            // alignItems: "center",
+                            // justifyContent: "center"
+
                         }
                     }>
                         <div className="TitleF"> <b>
