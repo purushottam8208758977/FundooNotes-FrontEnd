@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core' // overiding default css properties
 import '../ForgetPassword.css'
-import {forgetPassword} from '../services/services'
+import { forgetPassword } from '../services/services'
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 /**
@@ -79,8 +79,8 @@ const useStyles = makeStyles(theme => ({
 export class ForgetPassword extends Component {
     constructor() {
         super()
-        this.state={
-            email:""
+        this.state = {
+            email: ""
         }
         this.classes = useStyles.bind(this);
     }
@@ -96,19 +96,25 @@ export class ForgetPassword extends Component {
 
         console.log(`\n\n\t In handle forget password email - ${this.state.email} `);
 
-       
-            let forgetObject = {}
-            forgetObject.email = this.state.email
-            
 
-            console.log("\n\n\tObject ready to be sent --->", forgetObject)
-            
+        let forgetObject = {}
+        forgetObject.email = this.state.email
 
-            forgetPassword(forgetObject).then((data) => {
-                if (data) { console.log("\n\n\t Response ", data) }
-            })
 
-        
+        console.log("\n\n\tObject ready to be sent --->", forgetObject)
+
+
+        forgetPassword(forgetObject).then((data) => {
+            if (data) {
+                console.log("\n\n\t Response ", data)
+                toaster.notify(data.data.message)
+            }
+        }).catch((error) => {
+            console.log("fffff--->", error.response.data.message)
+            toaster.notify(error.response.data.message)
+        })
+
+
     }
     render() {
         return (

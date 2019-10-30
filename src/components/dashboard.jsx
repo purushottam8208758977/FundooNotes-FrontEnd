@@ -71,12 +71,17 @@ const theme = createMuiTheme({
         },
         "MuiAvatar": {
             "root": {
-                position:"absolute",
-                left:"40%",
-                display:"flex",
-                justifyContent:"flex-end"
+                position: "absolute",
+                left: "40%",
+                display: "flex",
+                justifyContent: "flex-end"
+            },
+            "colorDefault": {
+                left: "95%",
+                top: "20%"
             }
-        }
+        },
+
 
     }
 })
@@ -139,9 +144,9 @@ export class Dashboard extends Component {
                         }
                     }>
                         {this.state.toggle ?
-                            <div className="View" onClick={this.spoilView}><AppsRoundedIcon></AppsRoundedIcon></div>
+                            <img className="View" src={require('../assets/grid.svg')} onClick={this.spoilView} />
                             :
-                            <div className="View" onClick={this.handleView}><DnsOutlinedIcon></DnsOutlinedIcon></div>
+                            <img className="View" src={require('../assets/otherGrid.svg')} onClick={this.handleView} />
                         }
 
                         <TextField

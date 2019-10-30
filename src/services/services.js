@@ -8,6 +8,7 @@ export function registration(registrationData) {
 }
 
 export function login(loginData) { // login component
+
     console.log("\n\n\tIn service for login--->", loginData)
     return axios.post(url + "/login", loginData)
 }
@@ -27,7 +28,7 @@ export function forgetPassword(forgetData) {
 }
 
 export function resetPassword(resetData, token) {
-    console.log("\n\n\tIN services for reset password API", resetData,token)
+    console.log("\n\n\tIN services for reset password API", resetData, token)
     return axios.post(url + "/resetPassword", resetData, {
         headers: {
             token: token

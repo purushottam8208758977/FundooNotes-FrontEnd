@@ -35,7 +35,7 @@ const theme = createMuiTheme({
                 padding: "8.5px 11px"
             }
         },
-        'MuiInputLabel': {   
+        'MuiInputLabel': {
             'outlined': { transform: "translate(14px, 11px) scale(1)" }
         }
         ,
@@ -88,7 +88,7 @@ const useStyles = makeStyles(theme => ({
     button: {
         margin: theme.spacing(1),
     }
-    
+
 }));
 
 
@@ -111,7 +111,7 @@ export class Registration extends Component {
         this.props.history.push(path)
     }
 
-     handleRegistration = ()  => {
+    handleRegistration = () => {
 
         console.log("\n\n\t in handle submit", this.state.password);
 
@@ -125,15 +125,23 @@ export class Registration extends Component {
 
             console.log("\n\n\tObject ready to be sent --->", registrationObject)
 
-             registration(registrationObject).then((responseReceived)=>{
-                
-                if (responseReceived) { console.log("\n\n\t Response ", responseReceived) }
-                toaster.notify(responseReceived.data.message)
-             })
+            registration(registrationObject).then((responseReceived) => {
+                console.log("\n\n\t Response ", responseReceived)
+                if (responseReceived) {
+                    if (responseReceived.data.success) {
+                        toaster.notify(responseReceived.data.message)
+                    }
+                }
+                else {
+                    toaster.notify("SERVER NOT CONNECTED !")
+                }
 
+            }).catch((error)=>{
+                console.log("fffff--->",error.response.data.message)
+                toaster.notify(error.response.data.message)
+            })
         }
     }
-
     handleFirstName = (event) => {
         let retrievedFirstName = event.target.value
         this.setState({//setting firstName

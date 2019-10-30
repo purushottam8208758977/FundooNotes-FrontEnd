@@ -88,12 +88,13 @@ export class Login extends Component {
         }
         this.classes = useStyles.bind(this);
     }
-   
+
     toDashboard = () => {
         let path = '/home'
         this.props.history.push(path)
     }
-   handleLogin = () => {
+    handleLogin = () => {
+
         console.log(`\n\n\t In handle login email - ${this.state.email}  password - ${this.state.password}`);
 
         let loginObject = {}
@@ -103,12 +104,19 @@ export class Login extends Component {
         console.log("\n\n\tObject ready to be sent --->", loginObject)
 
         login(loginObject).then((responseReceived) => {
-            if (responseReceived) { console.log("\n\n\t Response ", responseReceived) }
-
-            if (responseReceived.data.success) {
-                toaster.notify(responseReceived.data.message)
-                this.toDashboard()
+            if (responseReceived) {
+                console.log("\n\n\t Response ", responseReceived)
+                if (responseReceived.data.success) {
+                    toaster.notify(responseReceived.data.message)
+                    this.toDashboard()
+                }
             }
+            else {
+                toaster.notify("SERVER NOT CONNECTED !")
+            }
+        }).catch((error) => {
+            console.log("--->", error.response.data.message)
+            toaster.notify(error.response.data.message)
         })
     }
     collectEmail = (event) => {

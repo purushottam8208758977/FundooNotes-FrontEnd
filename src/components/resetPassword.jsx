@@ -6,6 +6,8 @@ import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core' // overiding default css properties
 import '../ResetPassword.css'
 import { resetPassword } from '../services/services'
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 /**
  * @description - This prop is a inbuilt prop we are modifying it
  */
@@ -100,7 +102,12 @@ export class ResetPassword extends Component {
         console.log("\n\n\tToken extracted from url --->",token)
 
         resetPassword(resetObject,token).then((data) => {
-            if (data) { console.log("\n\n\t Response ", data) }
+            if (data) { console.log("\n\n\t Response ", data)
+            toaster.notify(data.data.message) 
+        }
+        }).catch((error)=>{
+            console.log("fffff--->",error.response.data.message)
+            toaster.notify(error.response.data.message)
         })
     }
     render() {

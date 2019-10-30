@@ -12,10 +12,13 @@ import './App.css';
 class App extends Component { // App is the component 
   render() {
     return (
-      <div className="App">
+     
+     <div className="App">
         <BrowserRouter>
           <Switch>
-            <Route path="/" exact component={Login} ></Route> 
+          {/* 'exact' keyword matches the exact or letter to letter url */}
+        
+            <Route path="/" exact component={Login} ></Route>  
             <Route path="/registration" component={Registration} ></Route>
             <Route path="/accountRecovery" component={ForgetPassword} ></Route>
             <Route path="/resetPassword/:token" component={ResetPassword} ></Route>

@@ -1,7 +1,9 @@
-.View{
+.View
+{
     position: absolute;
-    top:40%;
-    right: 21%;
+    top:32%;
+    right: 15%;
+    cursor: pointer
 }
 .KeepIcon{
   position: absolute;
@@ -10,6 +12,7 @@
   left:5.2%;
   top:27%;
   bottom: 10%;
+  cursor: pointer
 }
 
 .Keep{
@@ -20,7 +23,9 @@
     font-size: 22px;
     font-weight: 500;
     color: #5f6368;
-    line-height: 24px
+    line-height: 24px;
+    cursor: pointer
+    
 }
 
 .alignMent{
