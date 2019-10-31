@@ -7,15 +7,13 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core' // overidin
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-//<MDBIcon icon="th-large" />
-import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
-import DnsOutlinedIcon from '@material-ui/icons/DnsOutlined';
 import KeepIcon from '../assets/keep.jpg'
 import '../Dashboard.css'
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
-
+import '../components/DrawerToggleButton'
+import DrawerToggleButton from '../components/DrawerToggleButton';
 /**
  * @description - This prop is a inbuilt prop we are modifying it
  */
@@ -44,7 +42,7 @@ const theme = createMuiTheme({
             "root": {
                 "background": "#f1f3f4",
                 "padding": "0px 0px 0px 26px",
-                backgroundColor: "#f1f3f4",
+                "backgroundColor": "#f1f3f4",
                 "height": "40px",
                 "top": "15px",
                 "width": "260%",
@@ -58,7 +56,7 @@ const theme = createMuiTheme({
         "MuiSvgIcon": {
             "root": {
                 "position": "absolute",
-                "left": "17%",
+                "left": "10%",
                 "cursor": "pointer",
 
             }
@@ -136,20 +134,14 @@ export class Dashboard extends Component {
         return (
             <div>
                 <MuiThemeProvider theme={theme}>
-                    <Card style={
-                        {
-                            position: "absolute",
-                            width: "100%",
-                            height: "7.6%"
-                        }
-                    }>
+                    <Card className="CardL">
                         {this.state.toggle ?
                             <img className="View" src={require('../assets/grid.svg')} onClick={this.spoilView} />
                             :
                             <img className="View" src={require('../assets/otherGrid.svg')} onClick={this.handleView} />
                         }
 
-                        <TextField
+                        <TextField className="SearchBar"
                             id="filled-hidden-label"
                             className={clsx(this.classes.textField, this.classes.dense)}
                             hiddenLabel
@@ -167,9 +159,12 @@ export class Dashboard extends Component {
                         />
                         <img className="KeepIcon" src={KeepIcon} alt="keep pic"></img>
                         <div className="Keep">Fundoo</div>
-                        <div className="alignMent">  <Grid container justify="flex-end" alignItems="flex-end">
+                        <div className="AlignMent">  <Grid container justify="flex-end" alignItems="flex-end">
                             <Avatar className={this.classes.orangeAvatar}>N</Avatar>
                         </Grid></div>
+                        <nav><div>
+                            <DrawerToggleButton/>
+                        </div></nav>
                     </Card>
                 </MuiThemeProvider></div>
         )

@@ -29,6 +29,7 @@ const theme = createMuiTheme({
                 left: "80%"
             }
         }
+        
     }
 })
 
@@ -118,22 +119,10 @@ export class ForgetPassword extends Component {
     }
     render() {
         return (
-            <div className="Main">
+            <div>
                 <MuiThemeProvider theme={theme}>
 
-                    <Card style={
-                        {
-                            marginTop: "13%",
-                            marginLeft: "32.5%",
-                            position: "absolute",
-                            width: "35%",
-                            height: "60%"
-                            // display: "flex",
-                            // alignItems: "center",
-                            // justifyContent: "center"
-
-                        }
-                    }>
+                    <Card className="ForCard">  
                         <div className="TitleF"> <b>
                             <span className="F">F</span>
                             <span className="U">u</span>
@@ -166,9 +155,12 @@ export class ForgetPassword extends Component {
                                 variant="outlined" />
                         </div>
 
-                        <div className="FindButton" onClick={this.handleForgetPassword}><BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
+                        <div className="FindButton" onClick={this.handleForgetPassword}>
+                        Submit
+                        {/* <BootstrapButton variant="contained" color="primary" disableRipple className={this.classes.margin} onClick={this.handleToggle}>
                             <b> Submit</b>
-                        </BootstrapButton></div>
+                        </BootstrapButton> */}
+                        </div>
                     </Card>
                 </MuiThemeProvider>
             </div>
